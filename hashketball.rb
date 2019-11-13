@@ -1,3 +1,5 @@
+require 'pry'
+
 def game_hash
   {
     away: {team_name: 'Charlotte Hornets',
@@ -102,8 +104,6 @@ def game_hash
   }
 end
 
-require 'pry'
-
 def num_points_scored(player_search)
   game_hash.each do |team, team_info|
     team_info[:players].each do |player|
@@ -184,18 +184,43 @@ end
 
 def most_points_scored
   new_hash = {}
-  
   game_hash.each do |team, team_info|
     team_info[:players].each do |player|
-      new_hash[player[:player_name][player[:points]]
+      new_hash[player[:player_name]]
+      new_hash[player[:player_name]]= player[:points]
     end
   end
-  key = new_hash.sort{|a,b| a[1] <=> b[1]}.last 
+  key = new_hash.max_by { |k, v| v }[0]
   return key
 end
 
-def winning_team
+
+def winning_team(game_hash)
+  row_indew = 0 
+  while row_index < game_hash.length do
+     total += game_hash[:away][:players][row_index][:points] 
+   row_index  += 1 
+  end
+    while row_index < game_hash.length do
+       other_total += game_hash[:home][:players][row_index][:points]
+     row_index += 1
+    end
+   total > other_total ? "#{game_hash[:away][:team_name]}" : "#{game_hash[:home][:team_name]}"
 end
+  #game_hash.each do |team, team_info|
+    #team_info[:players].each do |player|
+      #game_hash[:away][:players]player[:points]#.reduce |sum, total|
+      #total+= sum
+    #end
+     #team_info[:players].each do |player|
+     # game_hash[:home][:players]player[:points]#.reduce |sum, other_total|
+      #other_total+= sum
+    #end
+  #end
+  #puts "#{game_hash[:away][:team_name]}" if total > #other_total
+#else puts "#{game_hash[:home][:team_name]}" if #other_total > total
+#else puts 'Both teams have equal points'
+ # end
 
 def player_with_longest_name
   names_array = []
