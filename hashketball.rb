@@ -1,6 +1,17 @@
 def game_hash
   
 #construct the full structure
+home_one = {:player_name=>"Alan Anderson", :number=>0, :shoe=>16, :points=>22, :rebounds=>12, :assists=>12, :steals=>3, :blocks=>1, :slam_dunks=>1}
+home_two = {:player_name=>"Reggie Evans", :number=>30, :shoe=>14, :points=>12, :rebounds=>12, :assists=>12, :steals=>12, :blocks=>12, :slam_dunks=>7}
+home_three = {:player_name=>"Brook Lopez", :number=>11, :shoe=>17, :points=>17, :rebounds=>19, :assists=>10, :steals=>3, :blocks=>1, :slam_dunks=>15}
+home_four = {:player_name=>"Mason Plumlee", :number=>1, :shoe=>19, :points=>26, :rebounds=>11, :assists=>6, :steals=>3, :blocks=>8, :slam_dunks=>5}
+home_five = {:player_name=>"Jason Terry", :number=>31, :shoe=>15, :points=>19, :rebounds=>2, :assists=>2, :steals=>4, :blocks=>11, :slam_dunks=>1}
+away_one = {:player_name=>"Jeff Adrien", :number=>4, :shoe=>18, :points=>10, :rebounds=>1, :assists=>1, :steals=>2, :blocks=>7, :slam_dunks=>2}
+away_two = {:player_name=>"Bismack Biyombo", :number=>0, :shoe=>16, :points=>12, :rebounds=>4, :assists=>7, :steals=>22, :blocks=>15, :slam_dunks=>10}
+away_three = {:player_name=>"DeSagna Diop", :number=>2, :shoe=>14, :points=>24, :rebounds=>12, :assists=>12, :steals=>4, :blocks=>5, :slam_dunks=>5}
+away_four = {:player_name=>"Ben Gordon", :number=>8, :shoe=>15, :points=>33, :rebounds=>3, :assists=>2, :steals=>1, :blocks=>1, :slam_dunks=>0}
+away_five = {:player_name=>"Kemba Walker", :number=>33, :shoe=>15, :points=>6, :rebounds=>12, :assists=>12, :steals=>7, :blocks=>5, :slam_dunks=>12}
+
 game_hash={}
 game_hash[:home] = {}
 game_hash[:away] = {}
@@ -16,28 +27,16 @@ game_hash[:home][:team_name] = "Brooklyn Nets"
 game_hash[:home][:colors] = ["Black", "White"]
 game_hash[:away][:team_name] = "Charlotte Hornets"
 game_hash[:away][:colors] = ["Turquoise", "Purple"]
-
-home_one = {:player_name=>"Alan Anderson", :number=>0, :shoe=>16, :points=>22, :rebounds=>12, :assists=>12, :steals=>3, :blocks=>1, :slam_dunks=>1}
-home_two = {:player_name=>"Reggie Evans", :number=>30, :shoe=>14, :points=>12, :rebounds=>12, :assists=>12, :steals=>12, :blocks=>12, :slam_dunks=>7}
-home_three = {:player_name=>"Brook Lopez", :number=>11, :shoe=>17, :points=>17, :rebounds=>19, :assists=>10, :steals=>3, :blocks=>1, :slam_dunks=>15}
-home_four = {:player_name=>"Mason Plumlee", :number=>1, :shoe=>19, :points=>26, :rebounds=>11, :assists=>6, :steals=>3, :blocks=>8, :slam_dunks=>5}
-home_five = {:player_name=>"Jason Terry", :number=>31, :shoe=>15, :points=>19, :rebounds=>2, :assists=>2, :steals=>4, :blocks=>11, :slam_dunks=>1}
-game_hash[:home][:players] << home_one
-game_hash[:home][:players] << home_two
-game_hash[:home][:players] << home_three
-game_hash[:home][:players] << home_four
-game_hash[:home][:players] << home_five
-
-away_one = {:player_name=>"Jeff Adrien", :number=>4, :shoe=>18, :points=>10, :rebounds=>1, :assists=>1, :steals=>2, :blocks=>7, :slam_dunks=>2}
-away_two = {:player_name=>"Bismack Biyombo", :number=>0, :shoe=>16, :points=>12, :rebounds=>4, :assists=>7, :steals=>22, :blocks=>15, :slam_dunks=>10}
-away_three = {:player_name=>"DeSagna Diop", :number=>2, :shoe=>14, :points=>24, :rebounds=>12, :assists=>12, :steals=>4, :blocks=>5, :slam_dunks=>5}
-away_four = {:player_name=>"Ben Gordon", :number=>8, :shoe=>15, :points=>33, :rebounds=>3, :assists=>2, :steals=>1, :blocks=>1, :slam_dunks=>0}
-away_five = {:player_name=>"Kemba Walker", :number=>33, :shoe=>15, :points=>6, :rebounds=>12, :assists=>12, :steals=>7, :blocks=>5, :slam_dunks=>12}
-game_hash[:away][:players] << away_one 
-game_hash[:away][:players] << away_two
-game_hash[:away][:players] << away_three
-game_hash[:away][:players] << away_four
-game_hash[:away][:players] << away_five
+game_hash[:home][:players].push(home_one)
+game_hash[:home][:players].push(home_two)
+game_hash[:home][:players].push(home_three)
+game_hash[:home][:players].push(home_four)
+game_hash[:home][:players].push(home_five)
+game_hash[:away][:players].push(away_one) 
+game_hash[:away][:players].push(away_two)
+game_hash[:away][:players].push(away_three)
+game_hash[:away][:players].push(away_four)
+game_hash[:away][:players].push(away_five)
 
 #p game_hash[:home][:players][0][:slam_dunks]
 #p game_hash[:away][:players][4][:number]
@@ -120,8 +119,8 @@ end
 def team_names
   the_hash=game_hash
   team_names_array =[]
-  team_names_array << the_hash[:home][:team_name]
-  team_names_array << the_hash[:away][:team_name] 
+  team_names_array.push(the_hash[:home][:team_name])
+  team_names_array.push(the_hash[:away][:team_name])
   team_names_array
 end
 
@@ -144,7 +143,7 @@ def player_numbers(team)
   jersey_numbers_array=[]
   if the_hash[:home][:team_name] == team
     temp_hash = the_hash[:home][:players]
-    jersey_numbers_array << temp_hash.map {|item| item[:number]}
+    jersey_numbers_array.push(temp_hash.map {|item| item[:number]})
     return jersey_numbers_array[0].sort
   end
   if the_hash[:away][:team_name] == team
@@ -198,7 +197,7 @@ end
 def BasriGiveMeTheTotalScores(home_or_away,the_hash)
   total_score = 0
   the_hash[home_or_away][:players].each do |item|
-    total_score = total_score + item[:points]
+    total_score += item[:points]
     end  
   total_score
 end
