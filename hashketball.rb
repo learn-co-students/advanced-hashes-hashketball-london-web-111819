@@ -119,5 +119,11 @@ def game_hash
      }
   }
 
-
+ def get_names(game_hash)
+   game_hash.map do |player|
+     player[:player_name]
+    end
+  end
+  
+ get_names(game_hash)  
 
