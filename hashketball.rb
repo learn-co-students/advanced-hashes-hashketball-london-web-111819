@@ -56,9 +56,10 @@ end
 def num_points_scored(name)
   #Basic check
   please_enter_a_name = "Please enter a player name to look for!"
-  if name == nil
-    return p please_enter_a_name
-  end
+  #if name == nil
+  #  return p please_enter_a_name
+  #end
+  return p please_enter_a_name if name == nil
   # The core code with a helper function of my own!
   the_hash=game_hash
   if BasriWhatIsHisScore(the_hash,:home,name)
@@ -277,7 +278,8 @@ def most_points_scored
 end
   
 #===main
-#p num_points_scored("Jason Terry")
+p num_points_scored("Jason Terry")
+p num_points_scored("Basri")
 #p num_points_scored("Kemba Walker")
 #p num_points_scored("Basri")
 #p team_colors("Brooklyn Nets")
@@ -287,7 +289,7 @@ end
 #p player_numbers("Charlotte Hornets")
 #p player_stats("Alan Anderson")
 #p big_shoe_rebounds
-p winning_team
+#p winning_team
 #p player_with_longest_name
 #p long_name_steals_a_ton?
 #p most_points_scored
