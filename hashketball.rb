@@ -55,7 +55,7 @@ def num_points_scored(name)
   #Basic check
   please_enter_a_name = "Please enter a player name to look for!"
   return p please_enter_a_name if name == nil
-  # The core code with a helper function of my own!
+  # The core code with a helper function of my own!l
   the_hash=game_hash
   return  BasriWhatIsHisScore(the_hash,:home,name) if BasriWhatIsHisScore(the_hash,:home,name) 
   return  BasriWhatIsHisScore(the_hash,:away,name) if BasriWhatIsHisScore(the_hash,:away,name)
@@ -64,12 +64,10 @@ def num_points_scored(name)
 end
 
 def BasriWhatIsHisShoeSize(passed_hash,passed_symbol,passed_string)
- passed_hash[passed_symbol][:players].each do |data|
-    if data[:player_name] == passed_string
-        return data[:shoe]
-      end
-    end
-    nil
+  passed_hash[passed_symbol][:players].each { |data|
+  return data[:shoe] if data[:player_name] == passed_string
+  }
+  nil
 end
 
 def shoe_size(name=nil)
@@ -87,19 +85,13 @@ end
 def team_colors(team)
   #Basic check
   please_enter_a_name = "Please enter a team name to look for!"
-  if team == nil
-    return p please_enter_a_name
-  end
+  return p please_enter_a_name if team == nil
   # The core code
   the_hash=game_hash
-  if the_hash[:home][:team_name] == team
-    return  the_hash[:home][:colors]
-  end
-  if the_hash[:away][:team_name] == team
-    return  the_hash[:away][:colors]
-  end
-the_team_does_not_exist = "The team you asked for is in none of the teams!"
-return the_team_does_not_exist
+  return  the_hash[:home][:colors] if the_hash[:home][:team_name] == team
+  return  the_hash[:away][:colors] if the_hash[:away][:team_name] == team
+  the_team_does_not_exist = "The team you asked for is in none of the teams!"
+  return the_team_does_not_exist
 end
 
 def team_names
