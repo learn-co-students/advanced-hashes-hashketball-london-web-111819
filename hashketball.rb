@@ -45,31 +45,22 @@ game_hash
 end
 
 def BasriWhatIsHisScore(passed_hash,passed_symbol,passed_string)
- passed_hash[passed_symbol][:players].each do |data|
-    if data[:player_name] == passed_string
-        return data[:points]
-      end
-    end
-    nil
+  passed_hash[passed_symbol][:players].each { |data|
+  return data[:points] if data[:player_name] == passed_string
+  }
+  nil
 end
 
 def num_points_scored(name)
   #Basic check
   please_enter_a_name = "Please enter a player name to look for!"
-  #if name == nil
-  #  return p please_enter_a_name
-  #end
   return p please_enter_a_name if name == nil
   # The core code with a helper function of my own!
   the_hash=game_hash
-  if BasriWhatIsHisScore(the_hash,:home,name)
-    return  BasriWhatIsHisScore(the_hash,:home,name)
-  end
-  if BasriWhatIsHisScore(the_hash,:away,name)
-    return  BasriWhatIsHisScore(the_hash,:away,name)
-  end
-the_player_does_not_exist = "The player you asked for is in none of the teams!"
-return the_player_does_not_exist
+  return  BasriWhatIsHisScore(the_hash,:home,name) if BasriWhatIsHisScore(the_hash,:home,name) 
+  return  BasriWhatIsHisScore(the_hash,:away,name) if BasriWhatIsHisScore(the_hash,:away,name)
+  the_player_does_not_exist = "The player you asked for is in none of the teams!"
+  return the_player_does_not_exist
 end
 
 def BasriWhatIsHisShoeSize(passed_hash,passed_symbol,passed_string)
@@ -81,22 +72,16 @@ def BasriWhatIsHisShoeSize(passed_hash,passed_symbol,passed_string)
     nil
 end
 
-def shoe_size(name)
+def shoe_size(name=nil)
   #Basic check
   please_enter_a_name = "Please enter a player name to look for!"
-  if name == nil
-    return p please_enter_a_name
-  end
+  return p please_enter_a_name if name == nil
   # The core code with a helper function of my own!
   the_hash=game_hash
-  if BasriWhatIsHisShoeSize(the_hash,:home,name)
-    return  BasriWhatIsHisShoeSize(the_hash,:home,name)
-  end
-  if BasriWhatIsHisShoeSize(the_hash,:away,name)
-    return  BasriWhatIsHisShoeSize(the_hash,:away,name)
-  end
-the_player_does_not_exist = "The player you asked for is in none of the teams!"
-return the_player_does_not_exist
+  return  BasriWhatIsHisShoeSize(the_hash,:home,name) if BasriWhatIsHisShoeSize(the_hash,:home,name)
+  return  BasriWhatIsHisShoeSize(the_hash,:away,name) if BasriWhatIsHisShoeSize(the_hash,:away,name)
+  the_player_does_not_exist = "The player you asked for is in none of the teams!"
+  return the_player_does_not_exist
 end
 
 def team_colors(team)
@@ -124,14 +109,6 @@ def team_names
   team_names_array.push(the_hash[:away][:team_name])
   team_names_array
 end
-
-#def CollectJerseyNumbers(passed_hash)
-#  array=[]
-#  passed_hash[:number]each do |data|
-#    array << data
-#  end
-#  nil
-#end
 
 def player_numbers(team)
   #Basic check
@@ -278,8 +255,8 @@ def most_points_scored
 end
   
 #===main
-p num_points_scored("Jason Terry")
-p num_points_scored("Basri")
+#p num_points_scored("Jason Terry")
+#p num_points_scored("Basri")
 #p num_points_scored("Kemba Walker")
 #p num_points_scored("Basri")
 #p team_colors("Brooklyn Nets")
@@ -293,3 +270,7 @@ p num_points_scored("Basri")
 #p player_with_longest_name
 #p long_name_steals_a_ton?
 #p most_points_scored
+p shoe_size("Basri")
+p shoe_size("Jason Terry")
+p shoe_size()
+p shoe_size("Ben Gordon ")
